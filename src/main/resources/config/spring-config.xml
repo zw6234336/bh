@@ -18,7 +18,7 @@
 	<task:annotation-driven />
 	<context:component-scan base-package="com.zhang">
 	</context:component-scan>
-	<bean id="PmthreadPool"
+	<bean id="BHthreadPool"
 		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 		<property name="corePoolSize" value="12" />
 		<property name="maxPoolSize" value="30" />
@@ -28,13 +28,18 @@
 			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
 		</property>
 	</bean>
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>classpath:config/config.properties</value>
+				<value>classpath:config/rss.properties</value>
 			</list>
 		</property>
+	</bean>
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="properties" ref="configProperties"></property>
 	</bean>
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />
