@@ -33,7 +33,8 @@ public class RssQuartz {
 	/**
 	 * 每天早上六点
 	 */
-	@Scheduled(cron = "0 0 6 * * ?")
+//	@Scheduled(cron = "0 0 6 * * ?")
+	@Scheduled(cron = "3 0 0 * * ?")
 	public void MyQuartzRSS(){
 		String[] rssArray = getArray(rsss);
 		for(String str:rssArray){
