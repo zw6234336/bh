@@ -33,15 +33,16 @@ public class RssQuartz {
 	/**
 	 * 每天早上六点
 	 */
-//	@Scheduled(cron = "0 0 6 * * ?")
-	@Scheduled(cron = "3 0 0 * * ?")
+	@Scheduled(cron = "0 0 6 * * ?")
+//	@Scheduled(cron = "3 * * * * ?")
 	public void MyQuartzRSS(){
 		String[] rssArray = getArray(rsss);
+		System.out.println("111");
 		for(String str:rssArray){
 			pool.execute(new Runnable() {
-				
 				@Override
 				public void run() {
+					System.out.println("222");
 					URL url = null;
 					try {
 						url = new URL(str);
