@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.io.FeedException;
 import com.zhang.service.BarkService;
-import com.zhang.service.SpringMailService;
+import com.zhang.service.MailService;
 import com.zhang.service.RssService;
 
 @Service
 public class BarkServiceImpl implements BarkService {
 
 	@Resource
-	private SpringMailService mailService;
+	private MailService mailService;
 	
 	@Resource
 	private RssService rssService;

@@ -23,7 +23,7 @@ import com.sun.syndication.io.FeedException;
 public class MailTest {
 
 	@Autowired
-	private SpringMailService mailUtil;
+	private MailService mailUtil;
 
 	@Autowired
 	private RssService rssService;
