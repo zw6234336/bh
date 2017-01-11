@@ -38,7 +38,7 @@ public class RssQuartz {
 	public void MyQuartzRSS(){
 		String[] rssArray = getArray(rsss);
 		System.out.println("111");
-		for(String str:rssArray){
+		for(final String str:rssArray){
 			pool.execute(new Runnable() {
 				@Override
 				public void run() {

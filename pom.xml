@@ -55,7 +55,12 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -88,8 +93,8 @@
 				<version>3.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<compilerArguments>
 						<extdirs>src\main\webapp\WEB-INF\lib</extdirs>
 					</compilerArguments>
