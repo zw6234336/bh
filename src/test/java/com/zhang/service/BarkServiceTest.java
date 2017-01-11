@@ -22,7 +22,7 @@ public class BarkServiceTest {
 	@Test
 	public void testBarkJava() throws MalformedURLException, MessagingException {
 		URL url = new URL("https://feeds.theguardian.com/theguardian/world/china/rss");
-		boolean actual = service.barkJava("zhangwei0404@sina.cn", url);
+		boolean actual = service.barkJava("**@sina.cn", url);
 		Assert.assertEquals(true, actual);
 	}
 }

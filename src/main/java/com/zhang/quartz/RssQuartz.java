@@ -24,6 +24,6 @@ public class RssQuartz {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		service.barkSpring("zhangwei0404@sina.cn", url);
+		service.barkSpring("**@sina.cn", url);
 	}
 }

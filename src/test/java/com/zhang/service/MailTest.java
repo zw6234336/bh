@@ -35,8 +35,8 @@ public class MailTest {
 		rssService.parseXml(url);
 
 		List<String> recipients = new ArrayList<String>();
-		recipients.add("zhangwei0404@sina.cn");
-		recipients.add("1253748986@qq.com");
+		recipients.add("**@sina.cn");
+		recipients.add("**@qq.com");
 		mailUtil.send(recipients, "This is a test mass mail", "Hello Mass!");
 	}
 
@@ -51,8 +51,8 @@ public class MailTest {
 		MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage);
 
 		// 设置收件人，寄件人
-		messageHelper.setTo("zhangwei0404@sina.cn");
-		messageHelper.setFrom("fh_jenkins@126.com");
+		messageHelper.setTo("**@sina.cn");
+		messageHelper.setFrom("**@126.com");
 		messageHelper.setSubject("测试HTML邮件！");
 		// true 表示启动HTML格式的邮件
 		messageHelper
@@ -60,8 +60,8 @@ public class MailTest {
 						"<html><head></head><body><h1>hello!!spring html Mail</h1></body></html>",
 						true);
 
-		senderImpl.setUsername("fh_jenkins@126.com"); // 根据自己的情况,设置username
-		senderImpl.setPassword("1989zhangwei"); // 根据自己的情况, 设置password
+		senderImpl.setUsername("**@126.com"); // 根据自己的情况,设置username
+		senderImpl.setPassword("**"); // 根据自己的情况, 设置password
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", "true"); // 将这个参数设为true，让服务器进行认证,认证用户名和密码是否正确
 		prop.put("mail.smtp.timeout", "25000");

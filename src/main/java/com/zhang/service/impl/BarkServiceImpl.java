@@ -43,7 +43,7 @@ public class BarkServiceImpl implements BarkService {
 		
 		System.out.println(temp.getValue());
 		String contend = temp.getValue();
-		mailService.send(recipient, "狗耳朵订阅服务",  "<html><head></head><body>"+contend+"</body></html>");
+		mailService.send(recipient, "kindle订阅服务",  "<html><head></head><body>"+contend+"</body></html>");
 		return true;
 	}
 
@@ -64,17 +64,8 @@ public class BarkServiceImpl implements BarkService {
 		SyndContentImpl temp = (SyndContentImpl)contendList.get(0);
 		
 		String contend = temp.getValue();
-		mailService.sendJava(recipient, "狗耳朵订阅服务",  "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"+contend+"</body></html>");
+		mailService.sendJava(recipient, "kindle订阅服务",  "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head><body>"+contend+"</body></html>");
 		return true;
 	}
 	
-	/**
-	 * 处理编码问题
-	 * 
-	 * @param contend
-	 */
-	private void handlerCode(String contend){
-		
-	}
-
 }
