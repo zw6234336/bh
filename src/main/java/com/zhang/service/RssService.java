@@ -14,6 +14,16 @@ import com.sun.syndication.io.FeedException;
  */
 public interface RssService {
 
+	
+	/**
+	 * 获取Rss编码格式
+	 * 
+	 * @param in
+	 * @return
+	 * @throws Exception
+	 */
+	public String getRssEncode(URL url) throws Exception;
+	
 	/**
 	 * 通过url解析Rss内容
 	 * 
@@ -22,13 +32,6 @@ public interface RssService {
 	 * @throws FeedException
 	 */
 	@SuppressWarnings("rawtypes")
-	public List parseXml(URL url) throws IllegalArgumentException,FeedException;
-
-	/**
-	 * 
-	 * 
-	 * @throws Exception
-	 */
-	public void createXml() throws Exception;
+	public List parseXml(URL url,String rssEncode) throws IllegalArgumentException,FeedException;
 
 }
