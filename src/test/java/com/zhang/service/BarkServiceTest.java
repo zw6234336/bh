@@ -19,10 +19,11 @@ public class BarkServiceTest {
 	@Autowired
 	private BarkService service;
 
+	
 	@Test
-	public void testBarkJava() throws MalformedURLException, MessagingException {
-		URL url = new URL("https://feeds.theguardian.com/theguardian/world/china/rss");
-		boolean actual = service.barkJava("**@sina.cn", url);
+	public void testBarkSpring() throws MalformedURLException, MessagingException {
+		URL url = new URL("http://www.ftchinese.com/rss/feed");
+		boolean actual = service.barkSpring("**@sina.cn","**@126.com", url);
 		Assert.assertEquals(true, actual);
 	}
 }
