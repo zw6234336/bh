@@ -41,7 +41,8 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 			<property name="properties" ref="configProperties"></property>
 	</bean>
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />
 		<property name="username" value="${mail.username}" />
 		<property name="password" value="${mail.password}" />
@@ -53,10 +54,6 @@
 				<prop key="mail.smtp.port">${mail.smtp.port}</prop>
 			</props>
 		</property>
-	</bean>
-	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
-		<!-- 发件人email -->
-		<property name="from" value="${mail.username}" />
 	</bean>
 
 </beans>
