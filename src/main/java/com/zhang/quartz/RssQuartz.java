@@ -21,6 +21,9 @@ public class RssQuartz {
 	@Value("#{configProperties['rss.resources']}")
 	private String rsss;
 	
+	@Value("#{configProperties['mail.username']}")
+	private String to;
+	
 	/**
 	 * 暂定只有一个接收用户
 	 */
@@ -49,7 +52,9 @@ public class RssQuartz {
 					} catch (MalformedURLException e) {
 						e.printStackTrace();
 					}
-					service.barkSpring(recipients, url);
+					
+					//TODO 编码问题
+					service.barkSpring(recipients,to, url);
 				}
 			});
 		}
