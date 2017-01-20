@@ -14,7 +14,6 @@
                http://www.springframework.org/schema/aop
                http://www.springframework.org/schema/aop/spring-aop.xsd
                ">
-
 	<task:annotation-driven />
 	<context:component-scan base-package="com.zhang">
 	</context:component-scan>
@@ -39,9 +38,9 @@
 	</bean>
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-			<property name="properties" ref="configProperties"></property>
+		<property name="properties" ref="configProperties"></property>
 	</bean>
-	
+
 	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />
 		<property name="username" value="${mail.username}" />
@@ -55,5 +54,5 @@
 			</props>
 		</property>
 	</bean>
-
+	<import resource="spring-config-*.xml" />
 </beans>
