@@ -19,7 +19,8 @@ import com.zhang.service.RssService;
 @Service
 public class BarkServiceImpl implements BarkService {
 
-	private static final Logger logger = LoggerFactory.getLogger(BarkServiceImpl.class);   
+	private static final Logger logger = LoggerFactory.getLogger(BarkServiceImpl.class); 
+	
 	@Resource
 	private MailService mailService;
 
@@ -28,6 +29,8 @@ public class BarkServiceImpl implements BarkService {
 
 	@Override
 	public boolean barkSpring(String to,String from, URL url) {
+		
+		logger.info("发送订阅信息参数邮件接收人{},邮件发送人{},rssUrl{}",to,from,url.toString());
 		@SuppressWarnings("rawtypes")
 		List contendList = new ArrayList();
 		String rssEncode = "";
@@ -40,12 +43,14 @@ public class BarkServiceImpl implements BarkService {
 		try {
 			contendList = rssService.parseXml(url, rssEncode);
 		} catch (IllegalArgumentException | FeedException e) {
-			e.printStackTrace();
+			logger.error("解析邮件订阅内容出错{}",e.toString());
 		}
 		if (contendList.size() == 0) {
+			logger.error("解析邮件订阅内容为空");
 			return false;
 		}
 		SyndContentImpl temp = (SyndContentImpl) contendList.get(0);
+		logger.info("得到订阅最新内容");
 
 		logger.info(temp.getValue());
 		String contend = temp.getValue();

@@ -2,33 +2,38 @@ package com.zhang.quartz;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import com.zhang.dao.RssMapper;
+import com.zhang.model.EmailRss;
+import com.zhang.querymodel.UserQueryModel;
 import com.zhang.service.BarkService;
+import com.zhang.service.UserService;
+import com.zhang.service.impl.BarkServiceImpl;
 
 @Component
 public class RssQuartz {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BarkServiceImpl.class); 
 
+	
 	@Resource
 	private BarkService service;
 	
-	@Value("#{configProperties['rss.resources']}")
-	private String rsss;
+	@Resource
+	private UserService userService;
 	
-	@Value("#{configProperties['mail.username']}")
-	private String to;
-	
-	/**
-	 * 暂定只有一个接收用户
-	 */
-	@Value("#{configProperties['mail.recipient.username']}")
-	private String recipients;
+	@Resource
+	private RssMapper rssDao;
 	
 	@Resource
 	private ThreadPoolTaskExecutor pool;
@@ -36,25 +41,27 @@ public class RssQuartz {
 	/**
 	 * 每天早上六点
 	 */
-	@Scheduled(cron = "0 0 6 * * ?")
-//	@Scheduled(cron = "3 * * * * ?")
+//	@Scheduled(cron = "0 0 6 * * ?")
+	@Scheduled(cron = "3 * * * * ?")
 	public void MyQuartzRSS(){
-		String[] rssArray = getArray(rsss);
-		System.out.println("111");
-		for(final String str:rssArray){
+		final UserQueryModel model = userService.getUserRssData("zhang");
+		
+		logger.info("定时任务开始时间:{}.用户信息{}",new Date().toLocaleString(),model.toString());
+		List<EmailRss> emailRsss = model.getEmailRsss();
+		for(EmailRss EmailRssModel:emailRsss){
+			
+			final String rssUrl = rssDao.selectByPrimaryKey(EmailRssModel.getRssId()).getUrl();
 			pool.execute(new Runnable() {
 				@Override
 				public void run() {
-					System.out.println("222");
 					URL url = null;
 					try {
-						url = new URL(str);
+						url = new URL(rssUrl);
 					} catch (MalformedURLException e) {
 						e.printStackTrace();
 					}
 					
-					//TODO 编码问题
-					service.barkSpring(recipients,to, url);
+					service.barkSpring(model.getUserEmails().get(0).getEmail(),"fh_jenkins@126.com", url);
 				}
 			});
 		}

@@ -1,5 +1,7 @@
 package com.zhang.dao;
 
+import java.util.List;
+
 import com.zhang.model.UserEmail;
 
 /**
@@ -11,15 +13,23 @@ import com.zhang.model.UserEmail;
  */
 public interface UserEmailMapper {
 	
-    int deleteByPrimaryKey(Integer id);
+	public int deleteByPrimaryKey(Integer id);
 
-    int insert(UserEmail record);
+	public int insert(UserEmail record);
 
-    int insertSelective(UserEmail record);
+	public int insertSelective(UserEmail record);
 
-    UserEmail selectByPrimaryKey(Integer id);
+	public UserEmail selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(UserEmail record);
+	public int updateByPrimaryKeySelective(UserEmail record);
 
-    int updateByPrimaryKey(UserEmail record);
+	public int updateByPrimaryKey(UserEmail record);
+    
+    /**
+     * 通过用户id得到所有的用户邮箱
+     * 
+     * @param userId
+     * @return
+     */
+	public List<UserEmail> selectByUserId(Integer userId);
 }

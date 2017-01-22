@@ -44,4 +44,11 @@ public class UserEmail implements Serializable {
     public void setCreatetime(String createtime) {
         this.createtime = createtime == null ? null : createtime.trim();
     }
+
+	@Override
+	public String toString() {
+		return "UserEmail [id=" + id + ", email=" + email + ", userId="
+				+ userId + ", createtime=" + createtime + "]";
+	}
+    
 }

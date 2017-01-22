@@ -1,5 +1,7 @@
 package com.zhang.dao;
 
+import java.util.Map;
+
 import com.zhang.model.Rss;
 
 /**
@@ -11,15 +13,30 @@ import com.zhang.model.Rss;
  */
 public interface RssMapper {
 	
-    int deleteByPrimaryKey(Integer id);
+    public int deleteByPrimaryKey(Integer id);
 
-    int insert(Rss record);
+    public int insert(Rss record);
 
-    int insertSelective(Rss record);
+    public int insertSelective(Rss record);
 
-    Rss selectByPrimaryKey(Integer id);
+    public Rss selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Rss record);
+    public int updateByPrimaryKeySelective(Rss record);
 
-    int updateByPrimaryKey(Rss record);
+    public int updateByPrimaryKey(Rss record);
+    
+    /**
+     * 通过订阅url更新编码
+     * @param param
+     * @return
+     */
+    public int updateEncodeByRssUrl(Map<String,String> param);
+    
+    /**
+     * 通过rss url得到文章编码信息
+     * 
+     * @param url
+     * @return
+     */
+    String selectCodeByUrl(String url);
 }

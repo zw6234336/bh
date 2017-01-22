@@ -16,8 +16,7 @@ import com.zhang.service.MailService;
 @Service
 public class MailServiceImpl implements MailService {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(BarkServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(MailServiceImpl.class);
 
 	@Resource
 	private MailSender mailSender;
@@ -40,6 +39,7 @@ public class MailServiceImpl implements MailService {
 	 */
 	private void sendHtml(String to, String from, String subject, String content) {
 
+		logger.info("发送邮件");
 		try {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(msg, true, "utf-8");
@@ -49,7 +49,7 @@ public class MailServiceImpl implements MailService {
 			helper.setText(content, true); // 邮件内容，注意加参数true，表示启用html格式
 			javaMailSender.send(msg);
 		} catch (MessagingException e) {
-			logger.warn("MessagingException throws exception");
+			logger.error("发送邮件出错{}",e.toString());
 		}
 
 	}
