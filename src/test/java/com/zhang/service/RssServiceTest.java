@@ -29,13 +29,13 @@ public class RssServiceTest {
 	@Test
 	public void testParseXml() throws Exception {
 		URL url = new URL("http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss");
-		String encode = s.getRssEncode(url);
-		s.parseXml(url,encode);
+		String actual = s.getRssEncode(url);
+		List list = s.parseXml(url,actual);
 	}
 	
 	@Test
 	public void testGetRssEncode() throws Exception{
-		URL url = new URL("http://beckrabbit.iteye.com/rss");
+		URL url = new URL("http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss");
 		String actual = s.getRssEncode(url);
 		Assert.assertEquals("utf-8", actual);
 	}

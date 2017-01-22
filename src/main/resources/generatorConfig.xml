@@ -49,7 +49,7 @@
 	
 	
 	<!-- 指定数据库表 -->
-	<table tableName="user" enableCountByExample="false"
+	<table tableName="email_rss" enableCountByExample="false"
 		enableSelectByExample="false" enableUpdateByExample="false"
 		enableDeleteByExample="false">
 	</table>

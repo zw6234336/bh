@@ -40,10 +40,17 @@ public class UserMapperTest {
 	}
 	
 	@Test
+	public void testSelectByUserName(){
+		User user = dao.selectByUserName("zhang");
+		System.out.println(user);
+	}
+	
+	@Test
 	public void testDelete(){
 		int actual = dao.deleteByPrimaryKey(3);
 		Assert.assertEquals(1, actual);
 		
 	}
+	
 	
 }

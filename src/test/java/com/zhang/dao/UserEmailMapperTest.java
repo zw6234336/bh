@@ -1,6 +1,7 @@
 package com.zhang.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,5 +34,11 @@ public class UserEmailMapperTest{
 		
 		int actual = dao.insert(record);
 		Assert.assertEquals(1, actual);
+	}
+	
+	@Test
+	public void testSelectByUserId(){
+		List<UserEmail> record = dao.selectByUserId(1);
+		System.out.println(record);
 	}
 }

@@ -32,7 +32,6 @@
 		<property name="locations">
 			<list>
 				<value>classpath:config/config.properties</value>
-				<value>classpath:config/rss.properties</value>
 			</list>
 		</property>
 	</bean>

@@ -17,6 +17,11 @@
     from rss
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectCodeByUrl" resultType="Map" parameterType="String" >
+    select rss_encode
+    from rss
+    where url = #{value}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from rss
     where id = #{id,jdbcType=INTEGER}
@@ -80,6 +85,15 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateEncodeByRssUrl" parameterType="Map" >
+    update rss
+    <set >
+      <if test="rssEncode != null" >
+        rss_encode = #{rssEncode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where url = #{url,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zhang.model.Rss" >
     update rss

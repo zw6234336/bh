@@ -23,7 +23,8 @@ public class BarkServiceTest {
 	@Test
 	public void testBarkSpring() throws MalformedURLException, MessagingException {
 		URL url = new URL("http://www.ftchinese.com/rss/feed");
-		boolean actual = service.barkSpring("**@sina.cn","**@126.com", url);
+//		URL url = new URL("http://coolshell.cn/feed");
+		boolean actual = service.barkSpring("zhangwei0404@sina.cn","fh_jenkins@126.com", url);
 		Assert.assertEquals(true, actual);
 	}
 }

@@ -28,9 +28,8 @@ public class RssMapperTest {
     public void testInsert(){
     	Rss record = new Rss();
     	record.setCreatetime(new Date().toLocaleString());
-    	record.setDes("my test rss");
-    	record.setRssEncode("utf-8");
-    	record.setUrl("https://feeds.theguardian.com/theguardian/world/china/rss,http://blog.csdn.net/abigfrog/rss/list");
+    	record.setDes("coolshell");
+    	record.setUrl("http://coolshell.cn/feed");
     	
     	int actual = dao.insert(record);
     	Assert.assertEquals(1, actual);
@@ -40,6 +39,16 @@ public class RssMapperTest {
 	public void testDelete(){
 		int actual = dao.deleteByPrimaryKey(1);
 		Assert.assertEquals(1, actual);
+	}
+	
+	@Test
+	public void testUpdate(){
+		Rss record = new Rss();
+		record.setUrl("http://coolshell.cn/feed");
+		record.setCreatetime(new Date().toLocaleString());
+		record.setDes("coolshell");
+		
+		dao.updateByPrimaryKeySelective(record);
 	}
 
 }
