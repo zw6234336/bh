@@ -29,7 +29,7 @@ public class UserEmailMapperTest{
 	public void testInsert(){
 		UserEmail record = new UserEmail();
 		record.setCreatetime(new Date().toLocaleString());
-		record.setEmail("zhangwei0404@sina.cn");
+		record.setEmail("**4@sina.cn");
 		record.setUserId(1);
 		
 		int actual = dao.insert(record);
