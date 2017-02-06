@@ -44,9 +44,9 @@ public class RssMapperTest {
 	@Test
 	public void testUpdate(){
 		Rss record = new Rss();
-		record.setUrl("http://coolshell.cn/feed");
 		record.setCreatetime(new Date().toLocaleString());
-		record.setDes("coolshell");
+		record.setDes("ftchinese");
+		record.setId(2);
 		
 		dao.updateByPrimaryKeySelective(record);
 	}
