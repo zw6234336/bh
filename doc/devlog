@@ -1,0 +1,33 @@
+1:加上内嵌数据库sqlite3
+2:数据库设计
+	user(用户表) 
+	id
+	user_name	
+	phone
+	createtime
+	pwd
+	
+	user_email(邮箱)
+	id
+	email
+	user_id
+	createtime
+	
+	rss(订阅信息)
+	id
+	url
+	des 描述
+	rss_encode
+	createtime
+	
+	email_rss(邮箱订阅关系)
+	id
+	email_id
+	rss_id
+	createtime		
+	
+	
+	
+	user(用户) 1-----------------------N user_email(邮箱信息)         
+	rss(订阅信息) M--------------------N user_email(邮箱信息)
+	
