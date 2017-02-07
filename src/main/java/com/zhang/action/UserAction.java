@@ -1,4 +1,4 @@
-package com.zhang.action.user;
+package com.zhang.action;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
