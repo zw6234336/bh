@@ -1,5 +1,6 @@
 package com.zhang.service;
 
+import com.zhang.model.User;
 import com.zhang.querymodel.UserQueryModel;
 
 /**
@@ -17,4 +18,12 @@ public interface UserService {
 	 * @return
 	 */
 	public UserQueryModel getUserRssData(String userName);
+	
+	/**
+	 * 转发dao操作
+	 * 
+	 * @param record
+	 * @return
+	 */
+	public int updateByPrimaryKeySelective(User record);
 }

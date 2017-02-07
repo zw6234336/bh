@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<spring.framework.version>4.1.6.RELEASE</spring.framework.version>
+		<spring.framework.version>4.3.5.RELEASE</spring.framework.version>
 		<mybatis.version>3.4.1</mybatis.version>
 	</properties>
 	<dependencies>
@@ -113,6 +113,12 @@
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.25-incubating</version>
+		</dependency>
+
 
 		<!-- Test -->
 		<dependency>
