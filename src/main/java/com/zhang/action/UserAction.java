@@ -1,15 +1,18 @@
 package com.zhang.action;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.zhang.model.Rss;
 import com.zhang.model.User;
 import com.zhang.querymodel.ActionModel;
 import com.zhang.querymodel.UserQueryModel;
+import com.zhang.service.RssService;
 import com.zhang.service.UserService;
 
 
@@ -19,13 +22,20 @@ public class UserAction {
 
 	@Resource
 	private UserService userService;
+	@Resource
+	private RssService rssService;
 	
 	
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
 	public UserQueryModel initUser(String userName){
-		System.out.println("aaaaaaaaaaaa");
 		return userService.getUserRssData(userName);
+	}
+	
+	@RequestMapping("/getRssInfo")
+	@ResponseBody
+	public List<Rss> getRssInfo(int id){
+		return rssService.selectRssByEmailId(id);
 	}
 	
 	

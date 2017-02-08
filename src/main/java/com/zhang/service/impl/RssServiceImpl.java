@@ -29,7 +29,10 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import com.zhang.dao.EmailRssMapper;
 import com.zhang.dao.RssMapper;
+import com.zhang.model.EmailRss;
+import com.zhang.model.Rss;
 import com.zhang.service.RssService;
 
 @Service
@@ -39,6 +42,9 @@ public class RssServiceImpl implements RssService {
 	
 	@Resource
 	private RssMapper rssDao;
+	
+	@Resource
+	private EmailRssMapper emailRssDao;
 	
 
 	@Override
@@ -177,6 +183,18 @@ public class RssServiceImpl implements RssService {
 		logger.info("根据订阅邮件内容编码解析邮件内容{}",sb.toString());
 		return sb.toString();
 
+	}
+
+	@Override
+	public List<Rss> selectRssByEmailId(Integer id) {
+		List<Rss> rsult = new ArrayList<Rss>();
+		
+		 List<EmailRss> emailRsss = emailRssDao.selectByEmail(id);
+		 for(EmailRss model:emailRsss){
+			 Rss tempRss = rssDao.selectByPrimaryKey(model.getRssId());
+			 rsult.add(tempRss);
+		 }
+		return rsult;
 	}
 	
 	

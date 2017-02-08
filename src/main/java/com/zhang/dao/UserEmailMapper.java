@@ -32,4 +32,5 @@ public interface UserEmailMapper {
      * @return
      */
 	public List<UserEmail> selectByUserId(Integer userId);
+	
 }

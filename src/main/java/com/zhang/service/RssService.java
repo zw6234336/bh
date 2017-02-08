@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 
 import com.sun.syndication.io.FeedException;
+import com.zhang.model.Rss;
 
 /**
  * 
@@ -33,5 +34,13 @@ public interface RssService {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List parseXml(URL url,String rssEncode) throws IllegalArgumentException,FeedException;
+	
+	 /**
+	  * 转发操作
+	  * 
+	 * @param id
+	 * @return
+	 */
+	public List<Rss> selectRssByEmailId(Integer id); 
 
 }
