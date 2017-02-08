@@ -3,16 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BH</title>
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/demo/demo.css">
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css">
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/datagrid-cellediting.js"></script>	
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/js/jquery-easyui-1.4.1/demo/demo.css">
+<link rel="stylesheet" type="text/css" href="static/js/jquery-easyui-1.4.1/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="static/js/jquery-easyui-1.4.1/themes/icon.css">
+<script type="text/javascript" src="static/js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/jquery-easyui-1.4.1/datagrid-cellediting.js"></script>	
+<script type="text/javascript" src="static/js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$.ajax({
-			url : 'mvc/user/getUserInfo?userName=zhang',
+			url : 'user/getUserInfo?userName=zhang',
 			type:'post',
 			success:function(data){
 				alert(data);
