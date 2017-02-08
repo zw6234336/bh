@@ -54,5 +54,12 @@
 				<prop key="number_format">#.##</prop>
 			</props>
 		</property>
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+				<entry key="webRoot" value="/bh"></entry>
+				<entry key="staticRoot" value="/bh/static"></entry>
+			</map>
+		</property>
 	</bean>
 </beans> 
