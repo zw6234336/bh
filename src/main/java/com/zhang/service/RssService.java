@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sun.syndication.io.FeedException;
 import com.zhang.model.Rss;
+import com.zhang.querymodel.RssAddModel;
 
 /**
  * 
@@ -42,5 +43,13 @@ public interface RssService {
 	 * @return
 	 */
 	public List<Rss> selectRssByEmailId(Integer id); 
+	
+	 /**
+	  * 新增订阅信息
+	  * 
+	 * @param record
+	 * @return
+	 */
+	public int rssAdd(RssAddModel record);
 
 }

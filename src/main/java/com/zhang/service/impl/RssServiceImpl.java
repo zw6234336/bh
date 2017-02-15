@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ import com.zhang.dao.EmailRssMapper;
 import com.zhang.dao.RssMapper;
 import com.zhang.model.EmailRss;
 import com.zhang.model.Rss;
+import com.zhang.querymodel.RssAddModel;
 import com.zhang.service.RssService;
 
 @Service
@@ -195,6 +197,22 @@ public class RssServiceImpl implements RssService {
 			 rsult.add(tempRss);
 		 }
 		return rsult;
+	}
+
+	@Override
+	public int rssAdd(RssAddModel record) {
+		
+		Rss rssModel = new Rss();
+		rssModel.setCreatetime(new Date().toLocaleString());
+		rssModel.setUrl(record.getUrl());
+		rssModel.setDes(record.getDes());
+		rssDao.insert(rssModel);
+		
+		EmailRss emailrecord  = new EmailRss(); 
+		emailrecord.setCreatetime(new Date().toLocaleString());
+		emailrecord.setEmailId(record.getEmailId());
+		emailrecord.setRssId(rssModel.getId());
+		return emailRssDao.insert(emailrecord);
 	}
 	
 	

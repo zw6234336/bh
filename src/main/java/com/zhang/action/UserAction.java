@@ -6,11 +6,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zhang.model.Rss;
 import com.zhang.model.User;
 import com.zhang.querymodel.ActionModel;
+import com.zhang.querymodel.RssAddModel;
 import com.zhang.querymodel.UserQueryModel;
 import com.zhang.service.RssService;
 import com.zhang.service.UserService;
@@ -60,6 +62,29 @@ public class UserAction {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * 新增订阅信息
+	 * 
+	 * 包括邮箱订阅关系信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping(path = "addRss",method=RequestMethod.POST)
+	@ResponseBody
+	public ActionModel AddRss(RssAddModel request){
+		ActionModel result = new ActionModel();
+		try {
+			rssService.rssAdd(request);
+			result.setCode(0);
+			result.setMessage("修改成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(1);
+			result.setMessage("修改失败");
+		}
+		return   result;
 	}
 	
 }

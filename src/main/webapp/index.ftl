@@ -44,6 +44,7 @@
 	
 	//订阅信息展示
 	function update2rsslist(id){
+		$("#emailId").val(id);
 		$('#dg').datagrid({
 			url :'user/getRssInfo?id='+id,
 			rownumbers : true,
@@ -57,9 +58,42 @@
 			columns : [ [ 
 				{field : 'ck',checkbox:'true'},
 				{field : 'id',title : 'id',width : '5%',align : 'center'},
-				{field : 'url',title : '地址',width : '80%',align : 'center'}
+				{field : 'url',title : '地址',width : '85%',align : 'center'}
 			] ]
 		});
+	}
+	
+	
+	/**
+	* 增加订阅信息
+	* 得到当前邮箱id
+	*
+	*/
+	function addRss(){
+		
+		$('#rss_add_dd').dialog({
+		    closed: false,
+		    cache: false,
+		    modal: true
+		});
+	}
+	
+	function save_rss(){
+		$('#rss_add_dd').dialog({
+		    closed: true,
+		    cache: false,
+		    modal: true
+		});
+		
+		$.ajax({
+			url : 'user/addRss',
+			type:'post',
+			data: $("#rss_add_form").serialize(),
+			success:function(data){
+				alert(data.message);
+				$('#dg').datagrid('reload');
+			}
+		})
 	}
 	
 </script>
@@ -94,11 +128,37 @@
 		</div>
 		<div data-options="region:'center'" title="订阅信息">
 			<div>
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
+				<a href="#" onclick="addRss()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
 				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
 			</div>
-			<table id="dg"  style="width:100%;height:300px"></table>
+			<table id="dg"  style="width:97%;height:300px"></table>
 		</div>
 	</div>
+	<div id="rss_add_dd" class="easyui-dialog" title="新增订阅信息" closed="true" style="width:600px;height:200px;padding:10px" >
+        	<form id="rss_add_form">
+	        	<table width="100%" border="1">
+	        		<tr>
+	        			<td width="20%" align="right">订阅URL:</td>
+	        			<td width="80%">
+	        				<input size="90" type="text" name="url"> 
+	        				<input  type="hidden" id="emailId" name="emailId"> 
+	        				
+	        			</td>
+	        		</tr>
+	        		<tr>
+	        			<td width="20%" align="right">订阅描述:</td>
+	        			<td width="80%">
+	        				<input size="90" type="text" name="des"> 
+	        			</td>
+	        		</tr>
+	        		<tr>
+	        			<td colspan="2" align="right"> 
+	        				<a href="#" class="easyui-linkbutton c1" style="width:120px">关闭</a>        
+	        				<a href="#" onclick="save_rss()" class="easyui-linkbutton c1" style="width:120px">保存</a> 
+	        			</td>
+	        		</tr>
+	        	</table>
+        	</form>
+    	</div>
 </body>
 </html>
