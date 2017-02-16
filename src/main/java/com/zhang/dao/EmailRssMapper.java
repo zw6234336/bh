@@ -1,6 +1,7 @@
 package com.zhang.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zhang.model.EmailRss;
 
@@ -25,7 +26,7 @@ public interface EmailRssMapper {
 
 	public int updateByPrimaryKeySelective(EmailRss record);
 
-    int updateByPrimaryKey(EmailRss record);
+    public int updateByPrimaryKey(EmailRss record);
     
     /**
      * 
@@ -33,5 +34,13 @@ public interface EmailRssMapper {
      * @param email
      * @return
      */
-    List<EmailRss> selectByEmail(Integer email_id);
+   public  List<EmailRss> selectByEmail(Integer email_id);
+    
+    /**
+     * 根据订阅信息邮箱id删除邮箱订阅关系表信息
+     * 
+     * @param rssId
+     * @return
+     */
+    public int deleteByRssIdEmailId(Map<String,Integer> param);
 }

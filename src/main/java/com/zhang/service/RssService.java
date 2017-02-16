@@ -51,5 +51,13 @@ public interface RssService {
 	 * @return
 	 */
 	public int rssAdd(RssAddModel record);
+	
+	/**
+	 * 删除订阅id和邮箱关系
+	 * 
+	 * @param rssIds
+	 * @param eamilId
+	 */
+	public void deleteRss(String rssIds,int eamilId);
 
 }

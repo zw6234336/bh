@@ -26,6 +26,10 @@
     delete from email_rss
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByRssIdEmailId" parameterType="Map" >
+    delete from email_rss
+    where rss_id = #{rssId,jdbcType=INTEGER} and email_id=#{emailId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.zhang.model.EmailRss" >
     insert into email_rss (id, email_id, rss_id, 
       createtime)

@@ -87,4 +87,25 @@ public class UserAction {
 		return   result;
 	}
 	
+	/**
+	 * 订阅信息删除
+	 * 
+	 * @return
+	 */
+	@RequestMapping(path="deleteRss",method=RequestMethod.POST)
+	@ResponseBody
+	public ActionModel deleteRss(String rssIds,int emailId){
+		ActionModel result = new ActionModel();
+		
+		try {
+			rssService.deleteRss(rssIds, emailId);
+			result.setCode(0);
+			result.setMessage("修改成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.setCode(1);
+			result.setMessage("删除失败");
+		}
+		return result;
+	}
 }

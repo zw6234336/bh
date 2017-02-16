@@ -68,7 +68,6 @@ public class RssServiceImpl implements RssService {
 			conn.setRequestProperty("User-agent", "Mozilla/4.0");
 			InputStream in = conn.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in,rssXmlEncode)); // 实例化输入流，并获取网页代码
-			StringBuilder sb = new StringBuilder();
 			while ((s = reader.readLine()) != null) {
 				if (s.startsWith("<?xml")) {
 					String strEncode = s.substring(
@@ -199,6 +198,7 @@ public class RssServiceImpl implements RssService {
 		return rsult;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public int rssAdd(RssAddModel record) {
 		
@@ -213,6 +213,37 @@ public class RssServiceImpl implements RssService {
 		emailrecord.setEmailId(record.getEmailId());
 		emailrecord.setRssId(rssModel.getId());
 		return emailRssDao.insert(emailrecord);
+	}
+
+	@Override
+	public void deleteRss(String rssIds, int eamilId) {
+		String[] idArray = getRssIds(rssIds);
+		
+		for(String rssId:idArray){
+			rssDao.deleteByPrimaryKey(Integer.parseInt(rssId));
+			
+			Map<String,Integer> param = new HashMap<String, Integer>();
+			param.put("emailId", eamilId);
+			param.put("rssId", Integer.parseInt(rssId));
+			emailRssDao.deleteByRssIdEmailId(param);
+		}
+	}
+	
+	/**
+	 * 字符串转数组
+	 * 
+	 * @param rssIds
+	 * @return
+	 */
+	private String[] getRssIds(String rssIds){
+		String[] idArray = null;
+		try {
+			idArray = rssIds.split(",");
+		} catch (Exception e) {
+			e.printStackTrace();
+			idArray[0] = rssIds;
+		}
+		return idArray;
 	}
 	
 	

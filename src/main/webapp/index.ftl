@@ -78,6 +78,28 @@
 		});
 	}
 	
+	/**
+	* 删除订阅信息可以多选
+	*/
+	function deleteRss(){
+		var rssId = new Array();
+	    var selRows = $('#dg').datagrid('getChecked');  
+	    for(var i=0;i<selRows.length;i++){
+	    	rssId.push(selRows[i].id);
+	    }
+	   
+	    
+	    $.ajax({
+			url : 'user/deleteRss',
+			type:'post',
+			data: ({rssIds:rssId.toString(),emailId:$("#emailId").val()}),
+			success:function(data){
+				alert(data.message);
+				$('#dg').datagrid('reload');
+			}
+		})
+	}
+	
 	function save_rss(){
 		$('#rss_add_dd').dialog({
 		    closed: true,
@@ -129,7 +151,7 @@
 		<div data-options="region:'center'" title="订阅信息">
 			<div>
 				<a href="#" onclick="addRss()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add</a>
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
+				<a href="#" onclick="deleteRss()" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">Remove</a>
 			</div>
 			<table id="dg"  style="width:97%;height:300px"></table>
 		</div>

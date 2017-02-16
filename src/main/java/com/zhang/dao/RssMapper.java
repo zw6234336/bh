@@ -38,5 +38,6 @@ public interface RssMapper {
      * @param url
      * @return
      */
-    String selectCodeByUrl(String url);
+    public String selectCodeByUrl(String url);
+    
 }
