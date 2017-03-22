@@ -39,7 +39,7 @@ public class RssServiceTest {
 	
 	@Test
 	public void testGetRssEncode() throws Exception{
-		URL url = new URL("http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss");
+		URL url = new URL("http://coolshell.cn/feed");
 		String actual = s.getRssEncode(url);
 		Assert.assertEquals("utf-8", actual);
 	}
