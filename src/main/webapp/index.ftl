@@ -58,7 +58,8 @@
 			columns : [ [ 
 				{field : 'ck',checkbox:'true'},
 				{field : 'id',title : 'id',width : '5%',align : 'center'},
-				{field : 'url',title : '地址',width : '85%',align : 'center'}
+				{field : 'url',title : '地址',width : '70%',align : 'center'},
+				{field : 'rssEncode',title : '编码',width : '10%',align : 'center'}
 			] ]
 		});
 	}
