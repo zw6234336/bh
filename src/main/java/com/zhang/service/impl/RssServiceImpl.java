@@ -56,7 +56,8 @@ public class RssServiceImpl implements RssService {
 		logger.info("获取订阅文章编码信息开始,默认文章编码为{}",rssXmlEncode);
 		
 		//得到rss文章的编码是否存在
-		String tempCode = rssDao.selectCodeByUrl(url.toString());
+		Map<String,String> tempCodeMap = rssDao.selectCodeByUrl(url.toString());
+		String tempCode = tempCodeMap.get("rss_encode").toLowerCase();
 		if(StringUtils.isNotBlank(tempCode)){
 			logger.info("订阅文章编码已经存在数据库为{}",tempCode);
 			return tempCode;
