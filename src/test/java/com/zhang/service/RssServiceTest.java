@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -21,6 +22,8 @@ import com.sun.syndication.io.XmlReader;
 import com.zhang.httpclient.HttpConnectionManager;
 import com.zhang.querymodel.RssAddModel;
 
+
+@Transactional(rollbackForClassName="RssServiceTest")
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration(value = "src/main/webapp")
 @ContextConfiguration(locations = { "classpath:config/spring-config.xml",
@@ -32,9 +35,10 @@ public class RssServiceTest {
 
 	@Test
 	public void testParseXml() throws Exception {
-		URL url = new URL("http://news.baidu.com/n?cmd=1&class=civilnews&tn=rss");
+		URL url = new URL("http://coolshell.cn/feed");
 		String actual = s.getRssEncode(url);
-		List list = s.parseXml(url,actual);
+		List list = s.parseXml(url,"UFT-8");
+		System.out.print("==="+list.toString());
 	}
 	
 	@Test
