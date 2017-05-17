@@ -1,5 +1,8 @@
 package com.zhang.action;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zhang.model.Rss;
 import com.zhang.model.User;
@@ -18,8 +22,9 @@ import com.zhang.service.RssService;
 import com.zhang.service.UserService;
 
 
-@Controller
+@RestController
 @RequestMapping("/user/*")
+@Api(value="UserAction",description="用户数据管理")
 public class UserAction {
 
 	@Resource
@@ -30,6 +35,7 @@ public class UserAction {
 	
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
+	@ApiOperation(value="UserQueryModel",httpMethod="POST",response=UserQueryModel.class)
 	public UserQueryModel initUser(String userName){
 		return userService.getUserRssData(userName);
 	}
